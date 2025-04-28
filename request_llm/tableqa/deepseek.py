@@ -11,14 +11,13 @@ import os
 from request_llm.tableqa.prompts.hint_map import *
 from arg_helper import args
 import requests
-
-client = OpenAI(api_key="sk-ee481c03d2734de8ad7bdc8008452fca", base_url="https://api.deepseek.com")
-qwen_32b_config={
-    # 'url':'http://192.168.1.137:8440/qwen201/v1/chat/completions',
-    'url': 'http://192.168.1.14:19997/v1/chat/completions',
-    'model': 'SAGI-SXHBT-32B',
-    'creds': 'Bearer sk-ALTbgl6ut981w'
-}
+from config import qwen_32b_config, deepseek_api_key
+client = OpenAI(api_key=deepseek_api_key, base_url="https://api.deepseek.com")
+# qwen_32b_config={
+#     'url': 'http://192.168.1.14:19997/v1/chat/completions',
+#     'model': '32B',
+#     'creds': 'Bearer w'
+# }
 
 
 def _request_vllm(url:str, query:str, system:str, model, authorization=None, temperature=0.01, top_p=0.95, max_tokens=2048):
